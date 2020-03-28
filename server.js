@@ -11,6 +11,12 @@ app.use(express.json());
 
 app.use(cors());
 
+app.use(express.static('views'));
+
+app.get('/', (req, res) => {
+    res.render('/views/index');
+});
+
 app.post('/create-payment-intent', async (req, res) => {
     try {
         const { amount } = req.body;
