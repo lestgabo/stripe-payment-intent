@@ -30,7 +30,8 @@ app.post('/create-payment-intent', async (req, res) => {
                 email: profile.email,
                 username: profile.username,
                 userRegion: profile.userRegion,
-                description: 'Subscribed to TFT Helper.'
+                description: 'Subscribed to TFT Helper.',
+                integration_check: 'accept_a_payment'
             }
         });
 
