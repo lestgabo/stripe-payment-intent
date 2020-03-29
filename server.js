@@ -20,11 +20,18 @@ app.get('/', (req, res) => {
 
 app.post('/create-payment-intent', async (req, res) => {
     try {
-        const { amount } = req.body;
+        const { amount, profile } = req.body;
+
         // Create a PaymentIntent with the order amount and currency
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount,
-            currency: 'usd'
+            currency: 'usd',
+            metadata: {
+                email: profile.email,
+                username: profile.username,
+                userRegion: profile.userRegion,
+                description: 'Subscribed to TFT Helper.'
+            }
         });
 
         // Send publishable key and PaymentIntent details to client
